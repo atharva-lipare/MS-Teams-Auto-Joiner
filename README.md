@@ -2,12 +2,12 @@
 
 ![banner](banner.png)
 
-## This python script will automatically join the most recent scheduled Microsoft Teams meeting appearing in your Teams calender.
+## This python script will automatically join the most recent scheduled Microsoft Teams meeting appearing in your Teams calendar.
 
 ## Features:
 - This python script will automatically open a chrome tab, enter your username, your password, open the calender tab and then join a meeting if available.
 - Before joining any meeting, it will by default turn off your camera and microphone.
-- After the organiser ends the meeting, it will open the calender tab to look for new meetings and join the next meeting if available.
+- After the organiser ends the meeting, it will open the calendar tab to look for new meetings and join the next meeting if available.
 
 ## Requirements:
 - [Python3](https://www.python.org/downloads/)
