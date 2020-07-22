@@ -1,2 +1,7 @@
 # MS-Teams-Auto-Joiner
-Automatically joins the latest Teams meeting
+## This repo is still in development
+
+Currently it will automatically join the latest Teams meeting appearing in your calender tab.
+
+### Usage:
+- Step 1:
