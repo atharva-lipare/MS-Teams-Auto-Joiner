@@ -1,4 +1,5 @@
 {
     "username":"example@example.com",
-    "password":"example"
+    "password":"example",
+    "minimumParticipants":15
 }
