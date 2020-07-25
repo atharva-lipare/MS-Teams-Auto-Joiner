@@ -1,6 +1,6 @@
-# MS-Teams-Auto-Joiner
+# [MS-Teams-Auto-Joiner](https://github.com/atharva-lipare/MS-Teams-Auto-Joiner)
 
-![banner](banner.png)
+![banner](https://i.imgur.com/xtq5Muz.png)
 
 ## This python script will automatically join [Microsoft Teams](https://www.microsoft.com/en-in/microsoft-365/microsoft-teams/group-chat-software) meetings appearing in your [Teams calendar](https://teams.microsoft.com/_#/calendarv2).
 
