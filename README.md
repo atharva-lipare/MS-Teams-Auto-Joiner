@@ -36,6 +36,7 @@
     ```bash
     python autoJoin.py
     ```
+- The script might not work as expected if the browser is minimised i.e you may open other windows above it but do not minimize the chrome window.
 
 ## Sample Scenario:
 - You have a meeting at 9 A.M, you may run the script anytime before 9 A.M and the script will automatically join the meeting when the join button is available.
