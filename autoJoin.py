@@ -99,9 +99,9 @@ def checkAndEndOrLeaveOrJoinMeeting():
         if len(numStr) >= 2:
             if numStr[1].text[1:-1] != '':
                 curParticipants = int(numStr[1].text[1:-1])
-        else :
-            actions = ActionChains(browser)
-            actions.move_to_element(wait_and_find_element_by_xpath('//button[@id="roster-button"]', timeOutDelay)).click().perform()
+            else :
+                actions = ActionChains(browser)
+                actions.move_to_element(wait_and_find_element_by_xpath('//button[@id="roster-button"]', timeOutDelay)).click().perform()
         maxParticipants = max(maxParticipants, curParticipants)
         if curParticipants < minParticipants:   # leaves the meeting automatically for given condition
             hangupBtn = wait_and_find_element_by_xpath('//button[@id="hangup-button"]', 3)
