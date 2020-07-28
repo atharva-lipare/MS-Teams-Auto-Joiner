@@ -8,7 +8,7 @@
 - This python script will automatically open a chrome tab, enter your username, your password, open the calendar tab and then join a meeting if available.
 - Before joining any meeting, it will by default turn off your camera and microphone.
 - After the organiser ends the meeting, it will open the calendar tab to look for new meetings and join the next meeting if available.
-- If the organiser does not end the meeting i.e. attendees are made to leave the meeting, the script will automatically leave the meeting after the number of participants present in the meeting falls below the minimum participants allowed set by the user (default is 15), but will rejoin the meeting if the join button is still visible on the calendar tab. To not rejoin the same meeting user must stop the script by CTRL+C.
+- If the organiser does not end the meeting i.e. attendees are made to leave the meeting, the script will automatically leave the meeting after the number of participants present in the meeting falls below the minimum participants allowed set by the user (default is 10), but will rejoin the meeting if the join button is still visible on the calendar tab. To not rejoin the same meeting user must stop the script by CTRL+C.
 
 ## Requirements:
 - [Python3](https://www.python.org/downloads/)
@@ -41,7 +41,7 @@
 ## Sample Scenario:
 - You have a meeting at 9 A.M, you may run the script anytime before 9 A.M. and the script will automatically join the meeting when the join button is available.
 - The script will then automatically join the next meeting scheduled at e.g.:- 10 A.M. AFTER the organiser ends the meeting.
-- If the organiser does not end the meeting i.e the organiser leaves the meeting instead of ending the meeting and tells the attendee to leave the meeting, the script will leave the meeting after the strength of the meeting falls down to 15 or any minimum value set by user.
+- If the organiser does not end the meeting i.e the organiser leaves the meeting instead of ending the meeting and tells the attendee to leave the meeting, the script will leave the meeting after the strength of the meeting falls down to 10 or any minimum value set by user.
 - To set a custom condition to automatically leave the meeting change the code on [line 74](https://github.com/atharva-lipare/MS-Teams-Auto-Joiner/blob/dcdad956f0c4d21fde107d11eb2755e9f3b80bf8/autoJoin.py#L74) of [autoJoin.py](autoJoin.py)
 
 ## Troubleshooting:
