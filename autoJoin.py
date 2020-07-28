@@ -12,7 +12,7 @@ sleepDelay = 2      # increase if you have a slow internet connection
 timeOutDelay = 30   # increase if you have a slow internet connection
 
 maxParticipants = curParticipants = 0
-minParticipants = 15
+minParticipants = 10
 
 opt = Options()
 opt.add_argument("--disable-infobars")
@@ -81,7 +81,7 @@ def checkAndJoinMeeting():
         elem.click()
     wait_and_find_element_by_xpath('//button[.="Join now"]', timeOutDelay).click() # join meeting
     print('Joined the meeting at {}'.format(datetime.now()))
-    sleep(20)
+    sleep(60*5)
     actions = ActionChains(browser)
     rosterBtn = wait_and_find_element_by_xpath('//button[@id="roster-button"]', timeOutDelay)
     actions.move_to_element(rosterBtn).click().perform()
@@ -103,7 +103,7 @@ def checkAndEndOrLeaveOrJoinMeeting():
                 actions = ActionChains(browser)
                 actions.move_to_element(wait_and_find_element_by_xpath('//button[@id="roster-button"]', timeOutDelay)).click().perform()
         maxParticipants = max(maxParticipants, curParticipants)
-        if curParticipants < minParticipants:   # leaves the meeting automatically for given condition
+        if curParticipants <= minParticipants:   # leaves the meeting automatically for given condition
             hangupBtn = wait_and_find_element_by_xpath('//button[@id="hangup-button"]', 3)
             actions = ActionChains(browser)
             actions.move_to_element(hangupBtn).click().perform()
@@ -111,17 +111,10 @@ def checkAndEndOrLeaveOrJoinMeeting():
             browser.get('https://teams.microsoft.com/_#/calendarv2')    # open calendar tab
         else :
             return
-    if wait_and_find_element_by_xpath('//button[@aria-label="Dismiss"]',2) != None:   # organiser ended the meeting
-        print('Organiser ended the meeting at {}'.format(datetime.now()))
+    else :        
+        maxParticipants = curParticipants = 0
         browser.get('https://teams.microsoft.com/_#/calendarv2')
-    if wait_and_find_element_by_xpath('//div[@title="Posts"]', 2) != None: # organiser ended the meeting
-        print('Organiser ended the meeting at {}'.format(datetime.now()))
-        browser.get('https://teams.microsoft.com/_#/calendarv2')
-    if wait_and_find_element_by_xpath('//button[@aria-label="Details"]',2) != None:  # organiser ended the meeting
-        print('Organiser ended the meeting at {}'.format(datetime.now()))
-        browser.get('https://teams.microsoft.com/_#/calendarv2')
-    maxParticipants = curParticipants = 0
-    checkAndJoinMeeting()
+        checkAndJoinMeeting()
 
 def init():
     global minParticipants
