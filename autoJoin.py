@@ -85,7 +85,6 @@ def checkAndJoinMeeting():
     actions = ActionChains(browser)
     rosterBtn = wait_and_find_element_by_xpath('//button[@id="roster-button"]', timeOutDelay)
     actions.move_to_element(rosterBtn).click().perform()
-    sleep(1)    
     numStr = wait_and_find_elements_by_xpath('//span[@class="toggle-number"][@ng-if="::ctrl.enableRosterParticipantsLimit"]')
     if len(numStr) >= 2:
         if numStr[1].text[1:-1] != '':
@@ -94,7 +93,7 @@ def checkAndJoinMeeting():
 def checkAndEndOrLeaveOrJoinMeeting():
     global maxParticipants, curParticipants
     hangupBtn = wait_and_find_element_by_xpath('//button[@id="hangup-button"]', 2)
-    if hangupBtn != None: # currently in meeting        
+    if hangupBtn != None: # currently in meeting
         numStr = wait_and_find_elements_by_xpath('//span[@class="toggle-number"][@ng-if="::ctrl.enableRosterParticipantsLimit"]')
         if len(numStr) >= 2:
             if numStr[1].text[1:-1] != '':
@@ -103,7 +102,7 @@ def checkAndEndOrLeaveOrJoinMeeting():
                 actions = ActionChains(browser)
                 actions.move_to_element(wait_and_find_element_by_xpath('//button[@id="roster-button"]', timeOutDelay)).click().perform()
         maxParticipants = max(maxParticipants, curParticipants)
-        if curParticipants <= minParticipants:   # leaves the meeting automatically for given condition
+        if curParticipants <= minParticipants and curParticipants != 0:   # leaves the meeting automatically for given condition
             hangupBtn = wait_and_find_element_by_xpath('//button[@id="hangup-button"]', 3)
             actions = ActionChains(browser)
             actions.move_to_element(hangupBtn).click().perform()
@@ -144,11 +143,11 @@ def main():
     except:
         print('init failed, trying again')
         main()
-    else:        
+    else:
         while True:
             try:
                 checkAndEndOrLeaveOrJoinMeeting()
-            except:                
+            except:
                 print('join meeting failed, trying again')
                 browser.get('https://teams.microsoft.com/_#/calendarv2')    # open calendar tab in teams
             else:
