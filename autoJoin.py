@@ -130,9 +130,9 @@ def init():
     wait_and_find_ele_by_link_text('Use the web app instead', timeOutDelay).click() # click use the web app instead link  
     while wait_and_find_element_by_xpath('//button[@title="Switch your calendar view"]', timeOutDelay) == None: #   wait for calendar tab to completely load
         sleep(5)
-    while wait_and_find_element_by_xpath('//button[@title="Switch your calendar view"]', timeOutDelay).get_attribute('name') != "Week": # change calender work-week view to week view
+    while wait_and_find_element_by_xpath('//button[@title="Switch your calendar view"]', timeOutDelay).get_attribute('name') != "Day": # change calender work-week view to day view
         wait_and_find_element_by_xpath('//button[@title="Switch your calendar view"]', timeOutDelay).click()
-        wait_and_find_element_by_xpath('//button[@name="Week"]', timeOutDelay).click()
+        wait_and_find_element_by_xpath('//button[@name="Day"]', timeOutDelay).click()
     print('Initialized Succesfully at {}'.format(datetime.now()))
     checkAndJoinMeeting()
 
