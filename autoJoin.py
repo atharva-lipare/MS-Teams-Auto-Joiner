@@ -91,7 +91,7 @@ def checkAndJoinMeeting():
             maxParticipants = curParticipants = int(numStr[1].text[1:-1])
 
 def checkAndEndOrLeaveOrJoinMeeting():
-    global maxParticipants, curParticipants
+    global maxParticipants, curParticipants, minParticipants
     hangupBtn = wait_and_find_element_by_xpath('//button[@id="hangup-button"]', 2)
     if hangupBtn != None: # currently in meeting
         numStr = wait_and_find_elements_by_xpath('//span[@class="toggle-number"][@ng-if="::ctrl.enableRosterParticipantsLimit"]')
@@ -108,11 +108,15 @@ def checkAndEndOrLeaveOrJoinMeeting():
             actions.move_to_element(hangupBtn).click().perform()
             print('Left meeting at {}'.format(datetime.now()))
             browser.get('https://teams.microsoft.com/_#/calendarv2')    # open calendar tab
+            browser.refresh()
+            sleep(5)
         else :
             return
-    else :        
+    else :
         maxParticipants = curParticipants = 0
         browser.get('https://teams.microsoft.com/_#/calendarv2')
+        browser.refresh()
+        sleep(5)
         checkAndJoinMeeting()
 
 def init():
@@ -151,7 +155,7 @@ def main():
                 print('join meeting failed, trying again')
                 browser.get('https://teams.microsoft.com/_#/calendarv2')    # open calendar tab in teams
             else:
-                sleep(3)
+                sleep(10)
 
 if __name__ == "__main__":
     main()
