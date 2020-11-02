@@ -87,6 +87,7 @@ def check_and_join_meeting():
     print('Joined the meeting at {}'.format(datetime.now()))
     sleep(60 * 5)
     browser.execute_script("document.getElementById('roster-button').click()")
+    sleep(sleepDelay)
     num_str = wait_and_find_elements_by_xpath(
         '//span[@class="toggle-number"][@ng-if="::ctrl.enableRosterParticipantsLimit"]')
     if len(num_str) >= 2:
