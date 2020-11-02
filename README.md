@@ -44,14 +44,8 @@
 - You have a meeting at 9 A.M, you may run the script anytime before 9 A.M. and the script will automatically join the meeting when the join button is available.
 - The script will then automatically join the next meeting scheduled at e.g.:- 10 A.M. AFTER the organiser ends the meeting.
 - If the organiser does not end the meeting i.e the organiser leaves the meeting instead of ending the meeting and tells the attendee to leave the meeting, the script will leave the meeting after the strength of the meeting falls down to 10 or any minimum value set by user.
-- To set a custom condition to automatically leave the meeting change the code on [line 105](https://github.com/atharva-lipare/MS-Teams-Auto-Joiner/blob/4a8fd4f9165381fbea3d2594f90378138ddb0ba7/autoJoin.py#L105) of [autoJoin.py](autoJoin.py)
-
-## Troubleshooting:
-- If your internet connection is slow, increase the sleepDelay and timeOutDelay variable on [line 11](https://github.com/atharva-lipare/MS-Teams-Auto-Joiner/blob/4a8fd4f9165381fbea3d2594f90378138ddb0ba7/autoJoin.py#L11) of [autoJoin.py](autoJoin.py). The default value is set to 2 and 60 seconds respectively.
-- If you get the following error:- ```selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: element is not attached to the page document``` ; This is due to a poor internet connection, so please increase the sleepDelay on [line 11](https://github.com/atharva-lipare/MS-Teams-Auto-Joiner/blob/4a8fd4f9165381fbea3d2594f90378138ddb0ba7/autoJoin.py#L11) of [autoJoin.py](autoJoin.py).
-- Please refer to [Python Documentation](https://www.python.org) if facing issues while installing [python3](https://www.python.org/downloads/). 
-- Please refer to [Pip Documentation](https://pip.pypa.io/en/stable/) if facing issues while installing the dependencies in [requirements.txt](requirements.txt).
+- To set a custom condition to automatically leave the meeting change the code on line 105 of [autoJoin.py](autoJoin.py)
 
 ## Contributing:
 - When contributing to this repository, feel free to discuss the change you wish to make via [Issue](https://github.com/atharva-lipare/MS-Teams-Auto-Joiner/issues) or [gitter chat room](https://gitter.im/MS-Teams-Auto-Joiner/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link) before making a change.
-
+- Add don't forget to ⭐ the repo, 😃.
