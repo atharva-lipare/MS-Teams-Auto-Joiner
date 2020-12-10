@@ -43,9 +43,9 @@
 ## Sample Scenario:
 - You have a meeting at 9 A.M, you may run the script anytime before 9 A.M. and the script will automatically join the meeting when the join button is available.
 - The script will then automatically join the next meeting scheduled at e.g.:- 10 A.M. AFTER the organiser ends the meeting.
-- If the organiser does not end the meeting i.e the organiser leaves the meeting instead of ending the meeting and tells the attendee to leave the meeting, the script will leave the meeting after the strength of the meeting falls down to 10 or any minimum value set by user.
-- To set a custom condition to automatically leave the meeting change the code on line 105 of [autoJoin.py](autoJoin.py)
+- If the organiser does not end the meeting i.e the organiser leaves the meeting instead of ending the meeting, the script will leave the meeting after the strength of the meeting falls down to 10 or any minimum value set by the user.
+- To set a custom condition to automatically leave the meeting change the code on line# 111 of [autoJoin.py](autoJoin.py)
 
 ## Contributing:
-- When contributing to this repository, feel free to discuss the change you wish to make via [Issue](https://github.com/atharva-lipare/MS-Teams-Auto-Joiner/issues) or [gitter chat room](https://gitter.im/MS-Teams-Auto-Joiner/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link) before making a change.
-- Add don't forget to ⭐ the repo, 😃.
+- When contributing to this repository, feel free to discuss the change you wish to make via [Issues](https://github.com/atharva-lipare/MS-Teams-Auto-Joiner/issues), [Discussions](https://github.com/atharva-lipare/MS-Teams-Auto-Joiner/discussions) or [gitter chat room](https://gitter.im/MS-Teams-Auto-Joiner/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link) before making a change.
+- And don't forget to ⭐ the repo, 😃.
