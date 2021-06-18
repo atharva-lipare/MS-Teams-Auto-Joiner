@@ -1,6 +1,6 @@
 {
-    "username":"18bcs1270@cuchd.in",
-    "password":"1270Khus@",
+    "username":"example@example.com",
+    "password":"example",
     "minimumParticipants":10,
     "use_twillio":false,
     "account_sid": "AC506be2ab8a6f4d8602cccccccccccccccc",
