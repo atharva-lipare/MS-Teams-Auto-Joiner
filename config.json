@@ -1,10 +1,11 @@
 {
-    "username":"example@example.com",
-    "password":"example",
+    "username":"18bcs1270@cuchd.in",
+    "password":"1270Khus@",
     "minimumParticipants":10,
-    "account_sid": "AC506be2ab8a6f4d8602624f5example",
-    "auth_token":"9f2ca3f98b46c57ab0a77example",
-    "your_no":"+91000000000",
-    "twillio_no":"+1700000000", 
+    "use_twillio":false,
+    "account_sid": "AC506be2ab8a6f4d8602cccccccccccccccc",
+    "auth_token":"9f2ca3f98b46c57ab0a77accccccccccccc",
+    "your_no":"+91894900000",
+    "twillio_no":"+17039970000", 
     "nickname" : "Wolfie"
 }
