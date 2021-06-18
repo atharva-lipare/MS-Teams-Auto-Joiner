@@ -1,5 +1,10 @@
 {
     "username":"example@example.com",
     "password":"example",
-    "minimumParticipants":10
+    "minimumParticipants":10,
+    "account_sid": "AC506be2ab8a6f4d8602624f5example",
+    "auth_token":"9f2ca3f98b46c57ab0a77example",
+    "your_no":"+91000000000",
+    "twillio_no":"+1700000000", 
+    "nickname" : "Wolfie"
 }
