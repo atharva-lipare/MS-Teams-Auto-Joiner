@@ -4,6 +4,17 @@ from webdriver_manager.chrome import ChromeDriverManager
 from time import sleep
 from datetime import datetime
 import json
+from twilio.rest import Client
+#varibale used for sending msg 
+check=2
+meeting_name ="meeting_name"
+with open('config.json') as f:
+    data = json.load(f)
+
+client = Client(data['account_sid'], data['auth_token'])
+
+
+
 TEAMS_URL = 'https://teams.microsoft.com/_#/calendarv2'
 
 sleepDelay = 2  # increase if you have a slow internet connection
@@ -84,6 +95,17 @@ def check_and_join_meeting():
     if elem.get_attribute('aria-pressed') == 'true':  # turn off microphone
         elem.click()
     wait_and_find_element_by_xpath('//button[.="Join now"]').click()  # join meeting
+
+    if(data['use_twillio']==True):
+        global check
+        global meeting_name
+        meeting_name=browser.title
+        check = 0
+        client.messages.create(
+        to="{}".format(data['your_no']),
+        from_="{}".format(data['twillio_no']),
+        body="Hello {} I  joined the meeting named {} at time {} . Hope you are doing well".format(data['nickname'],meeting_name,datetime.now()))
+        #message recived from that number
     print('Joined the meeting at {}'.format(datetime.now()))
     sleep(60 * 5)
     browser.execute_script("document.getElementById('roster-button').click()")
@@ -109,7 +131,16 @@ def check_and_end_or_leave_or_join_meeting():
             else:
                 browser.execute_script("document.getElementById('roster-button').click()")
         if curParticipants <= minParticipants and curParticipants != 0:  # leaves meeting for given condition
+            if(data['use_twillio']==True):
+                #twillion message Sending 
+                client.messages.create(
+                to="{}".format(data['your_no']),
+                from_="{}".format(data['twillio_no']),
+                body='"'+"Hello {} I left  the meeting named {} as it wasn't ended but the current peoples in meeting were less than {} at the time {}".format(data['nickname'],meeting_name,data['minimumParticipants'],datetime.now()))
+                #twillio message Sending
+
             browser.execute_script("document.getElementById('hangup-button').click()")
+
             print('Left meeting at {}'.format(datetime.now()))
             browser.get(TEAMS_URL)  # open calendar tab
             browser.refresh()
@@ -118,6 +149,15 @@ def check_and_end_or_leave_or_join_meeting():
             return
     else:
         curParticipants = 0
+        #twillion message Sending
+        global check 
+        if (check==0 and data['use_twillio']==True):
+            check=1     
+            client.messages.create(
+            to="{}".format(data['your_no']),
+            from_="{}".format(data['twillio_no']),
+            body='"'+"Hello {} host ended the meeting named {} at the time {}".format(data['nickname'],meeting_name,datetime.now()))
+
         browser.get(TEAMS_URL)
         browser.refresh()
         sleep(5)
@@ -128,8 +168,7 @@ def init():
     global minParticipants
     browser.get(TEAMS_URL)  # open calendar tab in teams
     sleep(sleepDelay)
-    with open('config.json') as f:
-        data = json.load(f)
+    
     minParticipants = data['minimumParticipants']
     wait_and_find_ele_by_id('i0116').send_keys(data['username'])  # enter username
     wait_and_find_ele_by_id('idSIButton9').click()  # click next
@@ -144,6 +183,15 @@ def init():
     while wait_and_find_element_by_xpath('//button[@title="Switch your calendar view"]').get_attribute('name') != "Day":
         wait_and_find_element_by_xpath('//button[@title="Switch your calendar view"]').click()
         wait_and_find_element_by_xpath('//button[@name="Day"]').click() # change calender work-week view to day view
+
+    
+    if(data['use_twillio']==True):
+        #twillion message Sending 
+        client.messages.create(
+        to="{}".format(data['your_no']),
+        from_="{}".format(data['twillio_no']),
+        body='"'+"Hello {} we finished intialization and opened the website at the time of {}".format(data['nickname'],datetime.now()))
+        #twillio message Sending
     print('Initialized Successfully at {}'.format(datetime.now()))
     check_and_join_meeting()
 
