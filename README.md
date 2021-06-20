@@ -32,6 +32,7 @@
         "username":"example@example.com",
         "password":"example",
         "minimumParticipants":10,
+        "headless": false,
         "use_twilio":false,
         "account_sid": "AC506be2ab8a6f4d8602cccccccccccccccc",
         "auth_token":"9f2ca3f98b46c57ab0a77accccccccccccc",
@@ -58,6 +59,7 @@
             "username":"example@example.com",
             "password":"example",
             "minimumParticipants":10,
+            "headless": false,
             "use_twilio":true,
             "account_sid": "AC506be2ab8a6f4d8602cccccccccccccccc",
             "auth_token":"9f2ca3f98b46c57ab0a77accccccccccccc",
@@ -66,6 +68,9 @@
             "nickname" : "nick_name"
         }
         ```
+- Extra config:
+    - To run in headless mode:
+        Set `headless` to `true`.
 ## Usage:
 -   Run [autoJoin.py](autoJoin.py):
     ```bash
