@@ -26,7 +26,7 @@
     ```
 
 - Step 2:
-    To set login credentials and minimum number of participants allowed, modify [config.json](config.json):
+    To set login credentials and minimum number of participants allowed, modify [config.json.rename](config.json.rename) and rename it to `config.json`:
     ```json
     {
         "username":"example@example.com",
@@ -52,7 +52,7 @@
     - Step 4:
         There you will see account_ssid, auth token and to get the number (which will be used to send the message), click on `Get trial number`.
     - Step 5:
-        Modify the details in [config.json](config.json):
+        Modify [config.json.rename](config.json.rename) and rename it to `config.json`:
         ```json
         {
             "username":"example@example.com",
