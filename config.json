@@ -1,0 +1,11 @@
+{
+    "username":"example@example.com",
+    "password":"example",
+    "minimumParticipants":10,
+    "use_twilio":false,
+    "account_sid": "AC506be2ab8a6f4d8602cccccccccccccccc",
+    "auth_token":"9f2ca3f98b46c57ab0a77accccccccccccc",
+    "your_no":"+91894900000",
+    "twilio_no":"+17039970000", 
+    "nickname" : "nick_name"
+}
