@@ -5,14 +5,14 @@ from time import sleep
 from datetime import datetime
 import json
 from twilio.rest import Client
-#varibale used for sending msg 
-check=2
-meeting_name ="meeting_name"
+
+
+check = 2 # variable used for sending msg
+meeting_name = "meeting_name"
 with open('config.json') as f:
     data = json.load(f)
 
 client = Client(data['account_sid'], data['auth_token'])
-
 
 
 TEAMS_URL = 'https://teams.microsoft.com/_#/calendarv2'
@@ -96,16 +96,20 @@ def check_and_join_meeting():
         elem.click()
     wait_and_find_element_by_xpath('//button[.="Join now"]').click()  # join meeting
 
-    if(data['use_twillio']==True):
+    if(data['use_twilio']==True):
         global check
         global meeting_name
         meeting_name=browser.title
         check = 0
-        client.messages.create(
-        to="{}".format(data['your_no']),
-        from_="{}".format(data['twillio_no']),
-        body="Hello {} I  joined the meeting named {} at time {} . Hope you are doing well".format(data['nickname'],meeting_name,datetime.now()))
-        #message recived from that number
+        try:
+            client.messages.create(
+                to=data['your_no'],
+                from_=data['twilio_no'],
+                body=f"Hi {data['nickname']}, I joined the meeting named {meeting_name} at {datetime.now()}. Hope you're doing well"
+            )
+        except:
+            print('Twilio service failed')
+    
     print('Joined the meeting at {}'.format(datetime.now()))
     sleep(60 * 5)
     browser.execute_script("document.getElementById('roster-button').click()")
@@ -131,16 +135,18 @@ def check_and_end_or_leave_or_join_meeting():
             else:
                 browser.execute_script("document.getElementById('roster-button').click()")
         if curParticipants <= minParticipants and curParticipants != 0:  # leaves meeting for given condition
-            if(data['use_twillio']==True):
-                #twillion message Sending 
-                client.messages.create(
-                to="{}".format(data['your_no']),
-                from_="{}".format(data['twillio_no']),
-                body='"'+"Hello {} I left  the meeting named {} as it wasn't ended but the current peoples in meeting were less than {} at the time {}".format(data['nickname'],meeting_name,data['minimumParticipants'],datetime.now()))
-                #twillio message Sending
+            if(data['use_twilio']==True):
+                #twilio message Sending
+                try:
+                    client.messages.create(
+                        to=data['your_no'],
+                        from_=data['twilio_no'],
+                        body=f"Hi {data['nickname']}, I left the meeting named {meeting_name} as attendees were less than {data['minimumParticipants']} at {datetime.now()}"
+                    )
+                except:
+                    print('Twilio service failed')
 
             browser.execute_script("document.getElementById('hangup-button').click()")
-
             print('Left meeting at {}'.format(datetime.now()))
             browser.get(TEAMS_URL)  # open calendar tab
             browser.refresh()
@@ -149,14 +155,18 @@ def check_and_end_or_leave_or_join_meeting():
             return
     else:
         curParticipants = 0
-        #twillion message Sending
+        #twilio message Sending
         global check 
-        if (check==0 and data['use_twillio']==True):
-            check=1     
-            client.messages.create(
-            to="{}".format(data['your_no']),
-            from_="{}".format(data['twillio_no']),
-            body='"'+"Hello {} host ended the meeting named {} at the time {}".format(data['nickname'],meeting_name,datetime.now()))
+        if (check==0 and data['use_twilio']==True):
+            check=1
+            try:
+                client.messages.create(
+                    to=data['your_no'],
+                    from_=data['twilio_no'],
+                    body=f"Hi {data['nickname']}, host ended the meeting named {meeting_name} at {datetime.now()}"
+                )
+            except:
+                print('Twilio service failed')
 
         browser.get(TEAMS_URL)
         browser.refresh()
@@ -185,13 +195,17 @@ def init():
         wait_and_find_element_by_xpath('//button[@name="Day"]').click() # change calender work-week view to day view
 
     
-    if(data['use_twillio']==True):
-        #twillion message Sending 
-        client.messages.create(
-        to="{}".format(data['your_no']),
-        from_="{}".format(data['twillio_no']),
-        body='"'+"Hello {} we finished intialization and opened the website at the time of {}".format(data['nickname'],datetime.now()))
-        #twillio message Sending
+    if(data['use_twilio']==True):
+        #twilio message Sending
+        try:
+            client.messages.create(
+                to=data['your_no'],
+                from_=data['twilio_no'],
+                body=f"Hi {data['nickname']}, we finished initialization at {datetime.now()}"
+            )
+        except:
+            print('Twilio service failed')
+
     print('Initialized Successfully at {}'.format(datetime.now()))
     check_and_join_meeting()
 
