@@ -30,7 +30,41 @@
     {
     "username":"example@example.com",
     "password":"example",
-    "minimumParticipants":10
+    "minimumParticipants":10,
+    "use_twillio":false,
+    "account_sid": "AC506be2ab8a6f4d8602cccccccccccccccc",
+    "auth_token":"9f2ca3f98b46c57ab0a77accccccccccccc",
+    "your_no":"+91894900000",
+    "twillio_no":"+17039970000", 
+    "nickname" : "Wolfie"
+    }
+    ```
+
+### if use_twillio value is set to false there is no need to update or modify parameters below leave them as it is ( that means you won't able to use the message service, if it is true that means you want to use the message serive proceed to next section about how to set it up.
+
+### If you want to use twillio( a message alert) for your script 
+
+- Step 1:
+    To create a free trial account on twillio [https://www.twilio.com/try-twilio](url)
+- Step 2:
+    Sign up and verify your mobile number ( if you already have account just login)
+- Step 3:
+    Open twillio console 
+- Step 4:
+    There you will see account_ssid, auth token and to get the number ( which will be used to send the messgae ), click on Get trial number .
+- Step 5:
+    Modift all the details in [config.json](config.json):
+    ```json
+    {
+    "username":"example@example.com",
+    "password":"example",
+    "minimumParticipants":10,
+    "use_twillio":true,
+    "account_sid": "AC506be2ab8a6f4d8602cccccccccccccccc",
+    "auth_token":"9f2ca3f98b46c57ab0a77accccccccccccc",
+    "your_no":"+91894900000",
+    "twillio_no":"+17039970000", 
+    "nickname" : "Wolfie"
     }
     ```
 ## Usage:
